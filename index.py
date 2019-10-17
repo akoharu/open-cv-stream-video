@@ -42,6 +42,12 @@ def cv_video():
     while True:
         frame = vs.read()
         frame = imutils.resize(frame, width=400)
+        # grab the current timestamp and draw it on the frame
+        timestamp = datetime.datetime.now()
+        cv2.putText(frame, timestamp.strftime(
+            "%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+
         with lock:
             outputFrame = frame.copy()
 
